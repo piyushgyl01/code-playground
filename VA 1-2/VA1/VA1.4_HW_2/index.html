@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA1.4_HW_2</title>
+</head>
+<body>
+    <label for="jsInput">What is JavaScript?:</label>
+    <textarea type="number" id="jsInput"></textarea>
+    <button id="displayJsButton">Display Answer</button>
+    <button id="checkJsEligibilityButton">Count Words</button>
+    <p id="displayJs"></p>
+
+    <label for="todoInput">List Todos:</label>
+    <textarea type="text" id="todoInput"></textarea>
+    <button id="displayTodoButton">Display Todos</button>
+    <button id="checkTodoEligibilityButton">Count Todos</button>
+    <p id="displayTodo"></p>
+
+    <label for="passwordInput">Enter password:</label>
+    <input type="text" id="passwordInput">
+    <button id="displayPasswordButton">Display Password</button>
+    <button id="checkPasswordEligibilityButton">Check Password</button>
+    <p id="displayPassword"></p>
+
+    <script>
+        const jsInput = document.querySelector("#jsInput");
+        const displayJsButton = document.querySelector("#displayJsButton");
+        const checkEligibilityButton = document.querySelector("#checkEligibilityButton");
+        const displayJs = document.querySelector("#displayJs");
+
+        displayJsButton.addEventListener("click", function() {
+            let js = jsInput.value;
+            displayJs.textContent = `Your Answer: ${js}`
+        })
+
+        checkJsEligibilityButton.addEventListener("click", function() {
+            let js = jsInput.value;
+            let jsNum = js.length;
+            if (jsNum <= 7) {
+                displayJs.innerHTML = `Your Answer: ${js}<br><br>Good`;
+                displayJs.style.color = "green"
+            } else {
+                displayJs.innerHTML = `Your Answer: ${js}<br><br>Word count exceeding.`;
+                displayJs.style.color = "red"
+            }
+        })
+
+        const todoInput = document.getElementById("todoInput");
+        const displayTodoButton = document.getElementById("displayTodoButton");
+        const checkTodoEligibilityButton = document.getElementById("checkTodoEligibilityButton");
+        const displayTodo = document.getElementById("displayTodo");
+
+        displayTodoButton.addEventListener("click", function() {
+            let todos = todoInput.value;
+            displayTodo.textContent = `Your Todos: ${todos}`      
+        })
+
+        checkTodoEligibilityButton.addEventListener("click", function() {
+            let todos = todoInput.value.trim();
+            let todosList = todos.split(",");
+            let todosCount = todosList.length;
+            if(todosCount > 0) {
+                displayTodo.style.color = "green";
+                displayTodo.innerHTML = `Total number of todos: ${todosCount}`;
+            } else {
+                displayTodo.style.color = "red";
+                displayTodo.innerHTML = `No valid todos entered`;
+            }
+        })
+
+        const passwordInput = document.getElementById("passwordInput");
+        const displayPasswordButton = document.getElementById("displayPasswordButton");
+        const checkPasswordEligibilityButton = document.getElementById("checkPasswordEligibilityButton");
+        const displayPassword = document.getElementById("displayPassword")
+
+        displayPasswordButton.addEventListener("click",  function() {
+            let password = passwordInput.value;
+            displayPassword.textContent = `Your Password: ${password}`
+        })
+
+        checkPasswordEligibilityButton.addEventListener("click", function() {
+            let passwordEligible = passwordInput.value;
+            if (passwordEligible.includes("@" || "!" || "$") && (passwordEligible.length > 5)) {
+                displayPassword.textContent = "Password Accepted";
+                displayPassword.style.color = "green"
+            } else {
+                displayPassword.textContent = "Invalid Password. Password should be more than 5 characters and must contain @ or! or $ symbol.";
+                displayPassword.style.color = "red"
+            }
+        })
+    </script>
+</body>
+</html>

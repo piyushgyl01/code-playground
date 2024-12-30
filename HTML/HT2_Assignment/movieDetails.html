@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">Movie Database</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </nav>
+        <h1>Movie Details</h1>
+    </header>
+    <main> 
+        <section id="movieDetails">
+
+        </section>
+    </main>
+    <footer>
+        <p>Copyright: 2023 Company Name. All rights reserved.</p>
+    </footer>
+    <script>
+        const movieDatabase = [
+            {
+                id: "1",
+                movieName: "Movie 1",
+                genre: "Action",
+                details: "This is an action packed movie",
+                releasedate: "2023-01-15",
+                director: "John Doe"
+            },
+            {
+                id: "2",
+                movieName: "Movie 2",
+                genre: "Drama",
+                details: "A dramatic story unfolds in this movie",
+                releasedate: "2023-02-20",
+                director: "Jane Smith"
+            },
+            {
+                id: "3",
+                movieName: "Movie 3",
+                genre: "Comedy",
+                details: "Get ready to laugh with this comedy.",
+                releasedate: "2023-05-20",
+                director: "Jane Walk"
+            }
+        ];
+
+        function getParameterById(id) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get(id);
+        }
+
+        let movieDetailsId = getParameterById("id");
+
+        let movieDetails;
+        for (let i = 0; i < movieDatabase.length; i++) {
+            if (movieDatabase[i].id === movieDetailsId) {
+                movieDetails = movieDatabase[i];
+                break;
+            }
+        }
+
+        let movieDetailsElements = document.getElementById("movieDetails");
+
+        if (movieDetails) {
+            movieDetailsElements.innerHTML = `
+                <h1>${movieDetails.movieName}</h1>
+                <p><strong>Genre: </strong>${movieDetails.genre}</p>
+                <p><strong>Details: </strong>${movieDetails.details}</p>
+                <p><strong>Release Date: </strong>${movieDetails.releasedate}</p>
+                <p><strong>Director: </strong>${movieDetails.director}</p>
+            `
+        } else {
+            movieDetailsElements.innerHTML = `
+                <h1>Query not found</h1>
+            `
+        }
+
+    </script>
+
+    
+</body>
+</html>

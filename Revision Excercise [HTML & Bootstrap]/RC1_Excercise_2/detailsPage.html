@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travels Details</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Travel Database</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="travelReport.html">Travel Report</a></li>
+                <li><a href="travelTips.html">Travel Trips</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Travel Details</h1>
+        <section id="travelDetails">
+
+        </section>
+    </main>
+    <script>
+        const dataBase = [
+            {
+                id: "1",
+                destination: "Paris",
+                duration: "7 days",
+                highlights: "Eiffel Tower, Louvre Museum",
+                details: "A wonderful trip to the romantic city of Paris."
+            },
+            {
+                id: "2",
+                destination: "Tokyo",
+                duration: "5 days",
+                highlights: "Tokyo Tower, Shibuya Crossing",
+                details: "Experience the vibrant culture and modern marvels of Tokyo."
+            },
+            {
+                id: "3",
+                destination: "Rome",
+                duration: "4 days",
+                highlights: "Colosseum, Vatican City",
+                details: "Dive into the rich history and stunning architecture of Rome."
+            },
+            {
+                id: "4",
+                destination: "New York",
+                duration: "6 days",
+                highlights: "Statue of Liberty, Central Park",
+                details: "Explore the bustling streets and iconic landmarks of New York City."
+            },
+            {
+                id: "5",
+                destination: "Cape Town",
+                duration: "8 days",
+                highlights: "Colosseum, Vatican City",
+                details: "Explore the bustling streets and iconic statues here."
+            },
+            {
+                id: "6",
+                destination: "Sydney",
+                duration: "7 days",
+                highlights: "Sydney Opera House, Bondi Beach",
+                details: "Enjoy the beautiful beaches and vibrant arts scene in Sydney."
+            }
+        ];
+
+        function getParameterById(id) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get("id");
+        }
+
+        let destinationId = getParameterById("id");
+
+        let destinationDetails;
+        for (let i = 0; i < dataBase.length; i++) {
+            if (dataBase[i].id === destinationId) {
+                destinationDetails = dataBase[i];
+                break;
+            }
+        }
+
+        let destinationDetailsElements = document.getElementById("travelDetails");
+
+        if (destinationDetails) {
+            destinationDetailsElements.innerHTML = `
+                <h1>${destinationDetails.destination}</h1>
+                <p><strong>Duration: </strong>${destinationDetails.duration}</p>
+                <p><strong>Highlights: </strong>${destinationDetails.highlights}</p>
+                <p><strong>Details: </strong>${destinationDetails.details}</p>
+            `
+        } else {
+            destinationDetailsElements.innerHTML = "not found"
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA1.3_HW2</title>
+</head>
+<body>
+    <label for="bookReviewInput">Enter your book review:</label>
+    <textarea id="bookReviewInput" rows="5" cols="50"></textarea>
+    <button id="displayBookReviewButton">Display Book Review</button>
+    <p id="displayBookReview"></p>
+
+    <label for="bioInput">Enter your personal bio:</label>
+    <textarea id="bioInput" rows="5" cols="50"></textarea>
+    <button id="displayBioButton">Display Styled Bio</button>
+    <p id="displayBio"></p>
+
+    <label for="diaryInput">Enter your personal diary entry:</label>
+    <textarea id="diaryInput" rows="5" cols="50"></textarea>
+    <button id="displayDiaryButton">Display Diary Entry</button>
+    <p id="displayDiary"></p>
+    
+    <script>
+        const bookReviewInput = document.getElementById("bookReviewInput");
+        const displayBookReviewButton = document.getElementById("displayBookReviewButton")
+        const displayBookReview = document.getElementById("displayBookReview");
+
+        displayBookReviewButton.addEventListener("click", function() {
+            let bookReview = bookReviewInput.value;
+            displayBookReview.textContent = `Your book review: ${bookReview}`
+        })
+
+        const bioInput =  document.getElementById("bioInput");
+        const displayBioButton = document.getElementById("displayBioButton");
+        const displayBio = document.getElementById("displayBio");
+
+        displayBioButton.addEventListener("click", function() {
+            let bio = bioInput.value;
+            displayBio.textContent = bio
+            displayBio.style.fontStyle = "italic"
+        })
+
+        const diaryInput =  document.getElementById("diaryInput");
+        const displayDiaryButton = document.getElementById("displayDiaryButton");
+        const displayDiary = document.getElementById("displayDiary");
+
+        displayDiaryButton.addEventListener("click", function() {
+            let diary = diaryInput.value;
+            const currentDateTime = new Date().toLocaleString();
+            displayDiary.innerHTML = `<p><strong>${currentDateTime}</strong></p><p>${diary}</p>`
+        })
+
+    </script>
+</body>
+</html>

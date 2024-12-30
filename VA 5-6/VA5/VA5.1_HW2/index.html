@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA5.1_HW2</title>
+</head>
+<body>
+    <h1>Joke API Programming Joke</h1>
+    <button type="button" id="getDataBtn">Get Programming Joke</button>
+    <div id="dataContainer"></div>
+
+    <script>
+        const getDataBtn = document.querySelector("#getDataBtn");
+        const dataContainer = document.querySelector("#dataContainer");
+
+        const apiUrl = "https://v2.jokeapi.dev/joke/Programming?type=single"
+
+        getDataBtn.addEventListener("click", function() {
+            fetch (apiUrl)
+                .then (function responseHandler(response) {
+                    return response.json();
+                })
+                .then (function showData(data) {
+                    dataContainer.innerHTML = `${data.joke}`;
+                })
+                .catch (function showError(error) {
+                    dataContainer.textContent = "An error occured while fetching data."
+                })
+        })
+    </script>
+</body>
+</html>

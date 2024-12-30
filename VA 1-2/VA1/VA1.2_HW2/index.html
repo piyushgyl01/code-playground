@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA1.2_HW2</title>
+</head>
+<body>
+    <label for="countryInput">Enter your country:</label>
+    <input type="text" id="countryInput">
+    <button id="displayCountryButton">Display Country</button>
+    <p id="displayCountry"></p>
+
+    <label for="websiteInput">Enter a website name:</label>
+    <input type="text" id="websiteInput">
+    <button id="displayWebsiteButton">Display Heading</button>
+    <h1 id="displayWebsite"></h1>
+
+    <label for="studentVerifyInput">Are you a student?</label>
+    <input type="text" id="studentVerifyInput">
+    <button id="studentVerifyInputButton">Display Response</button>
+    <p id="displayStudentVerifyInput"></p>
+
+    <label for="ageInput">Enter your age:</label>
+    <input type="number" id="ageInput">
+    <button id="validateAgeButton">Check Age</button>
+    <p id="showAgeMessage"></p>
+
+    <script>
+        const countryInput = document.getElementById("countryInput");
+        const displayCountryButton = document.getElementById("displayCountryButton");
+        const displayCountry = document.getElementById("displayCountry");
+
+        displayCountryButton.addEventListener("click", function() {
+            const country = countryInput.value;
+            displayCountry.textContent = `Your country is ${country}`;
+        })
+
+        const websiteInput = document.getElementById("websiteInput");
+        const displayWebsiteButton = document.getElementById("displayWebsiteButton");
+        const displayWebsite = document.getElementById("displayWebsite");
+
+        displayWebsiteButton.addEventListener("click", function() {
+            const website = websiteInput.value;
+            displayWebsite.textContent = `${website}`;
+        })
+
+        const studentVerifyInput = document.getElementById("studentVerifyInput");
+        const studentVerifyInputButton = document.getElementById("studentVerifyInputButton");
+        const displayStudentVerifyInput = document.getElementById("displayStudentVerifyInput");
+
+        studentVerifyInputButton.addEventListener("click", function() {
+            const studentInput = studentVerifyInput.value.trim().toLowerCase();
+            if (studentInput === "yes" || studentInput === "y") {
+                displayStudentVerifyInput.textContent = `You are a student.`
+            } else  if (studentInput === "no" || studentInput === "n") {
+                displayStudentVerifyInput.textContent = `You are not a student.`
+            } else {
+                displayStudentVerifyInput.textContent = `Invalid Input`
+            }
+        })
+
+        const ageInput = document.getElementById("ageInput");
+        const validateAgeButton = document.getElementById("validateAgeButton");
+        const showAgeMessage = document.getElementById("showAgeMessage");
+        
+        validateAgeButton.addEventListener("click",  function() {
+            const age = ageInput.value;
+            if (age >= 18) {
+                showAgeMessage.textContent = `You age is ${age} so you are an adult.`;
+            } else {
+                showAgeMessage.textContent = `You age is ${age} so you are not an adult `;
+            }
+        })
+
+    </script>
+</body>
+</html>

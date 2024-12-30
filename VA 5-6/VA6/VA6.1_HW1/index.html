@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA6.1_HW1</title>
+</head>
+<body>
+    <h1>Movie bookList</h1>
+    <ul id="movieList"></ul>
+
+    <script>
+        const apiUrl = "https://va-5-assignment-express-student-neog.replit.app/movies";
+        const movieList = document.querySelector("#movieList");
+
+        function fetchData() {
+            movieList.textContent = "loading...";
+            fetch(apiUrl) 
+                .then (function (response) {
+                    return response.json();
+                })
+                .then (function (data) {
+                    if (data) {
+                        movieList.textContent = "";
+                        for (let i = 0;i < data.length; i++) {
+                            const liELements = document.createElement("li");
+                            liELements.textContent = `${data[i].title} - ${data[i].language} - ${data[i].rating} - ${data[i].director}`;
+                            movieList.appendChild(liELements);
+                        }
+                    } else {
+                        movieList.textContent = "Failed to fetch the data";
+                    }
+                })
+                .catch (function (error) {
+                    movieList.textContent = "An error occured while fetching data.";
+                })
+        }
+        fetchData();
+    </script>
+</body>
+</html>

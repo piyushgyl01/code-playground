@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players Details</title>
+</head>
+<body>
+    <header>
+        <a href="playersDetails.html">Cricket Player Database</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="players.html">Players</a></li>
+            <li><a href="reports.html">Report</a></li>
+        </ul>
+        <h1>Players Details</h1>
+    </header>
+    <main>
+        <section id="playersDetails">
+
+        </section>
+    </main>
+    <footer>
+        <p>Copyright: Company Name. All rigts reserved.</p>
+    </footer>
+    <script>
+        const playersDatabase = [
+            {
+                id: "1",
+                name: "Player 1",
+                country: "India",
+                role: "Batsman"
+            },
+            {
+                id: "2",
+                name: "Player 2",
+                country: "Australia",
+                role: "Baller"
+            }
+        ];
+
+        function getParameterById(id) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get(id);
+        }
+
+        let playersDetailsId = getParameterById("id")
+        let playersDetails;
+        for (let i =0; i < playersDatabase.length; i++) {
+            if(playersDatabase[i].id === playersDetailsId) {
+                playersDetails = playersDatabase[i];
+                break;
+            }
+        }
+
+        let playersDetailsElements = document.getElementById("playersDetails");
+
+        if (playersDetails) {
+            playersDetailsElements.innerHTML = `
+                <h1>${playersDetails.name}</h1>
+                <p><strong>Country: </strong>${playersDetails.country}</p>
+                <p><strong>Role: </strong>${playersDetails.role}</p>
+            `
+        } else {
+            playersDetailsElements.innerHTML = "<p>Player not found</p>";
+        }
+    </script>
+</body>
+</html>

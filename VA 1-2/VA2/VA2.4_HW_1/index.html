@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA2.4_HW_1</title>
+</head>
+<body>
+    <h1>Email Registration Form</h1>
+    <form id="emailRegistrationForm">
+        <label for="userName">Enter Your Name:</label> <br>
+        <input type="text" id="userName">
+        <br> <br>
+        <label for="fullEmailAddress">Enter Your Email Address:</label> <br>
+        <input id="fullEmailAddress">
+        <br> <br>    
+
+        <label>Select Event Type:</label> <br>
+        <label for="conference"><input type="radio" name="Event" id="conference" value="Conference">Conference</label> <br>
+        <label for="workshop"><input type="radio" name="Event" id="workshop" value="Workshop">Workshop</label> <br>
+        <label for="networking"><input type="radio" name="Event" id="networking" value="Networking">Networking</label> 
+        <br><br>
+
+        <label>Select dietary restrictions:</label> <br>
+        <label for="vegetarian"><input type="checkbox" name="dietaryRestrictions" id="vegetarian" value="Vegetarian">Vegetarian</label> <br>
+        <label for="vegan"><input type="checkbox" name="dietaryRestrictions" id="vegan" value="Vegan">Vegan</label> <br>
+        <label for="gluten-free"><input type="checkbox" name="dietaryRestrictions" id="gluten-free" value="Gluten-free">Gluten-free</label> 
+        <br><br>
+
+        <label>Select T-shirt size:</label> <br>
+        <select id="selectShirtsize">
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+        <br> <br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <div id="formResult">
+
+    </div>
+
+    <script>
+        const emailRegistrationForm = document.getElementById("emailRegistrationForm");
+
+        emailRegistrationForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const userName = document.getElementById("userName").value;
+            const fullEmailAddress = document.getElementById("fullEmailAddress").value;
+            const eventEhe = document.querySelector(`input[name="Event"]:checked`).value;
+            const restrictions = document.querySelectorAll(`input[name="dietaryRestrictions"]:checked`)
+            let selectedRestrictions = [];
+            for (let i = 0; i < restrictions.length; i++) {
+                selectedRestrictions.push(restrictions[i].value)
+            }
+            const shirtSize = document.getElementById("selectShirtsize").value;
+
+            const userInputValues = `<h2>Registration Details</h2>
+            <p><strong>Name:</strong> ${userName}</p>
+            <p><strong>Email:</strong> ${fullEmailAddress}</p>
+            <p><strong>Event Type:</strong> ${eventEhe}</p>
+            <p><strong>Dietary Restrictions:</strong> ${selectedRestrictions.join(", ")}</p>
+            <p><strong>T-Shirt Sizee:</strong> ${shirtSize}</p>`
+
+            const divElement = document.getElementById("formResult");
+            divElement.innerHTML = userInputValues
+            
+        })
+    </script>
+</body>
+</html>

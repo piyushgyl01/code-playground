@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA1.3_HW1</title>
+</head>
+<body>
+    <label for="favBookInput">Enter Your Favourite Book:</label>
+    <textarea id="favBookInput" rows="5" cols="50"></textarea>
+    <button id="displayBookButton">Display Book List</button>
+    <p id="displayFavouriteBooks"></p>
+
+    <label for="recipeInput">Enter a recipe:</label>
+    <textarea id="recipeInput" rows="5" cols="50"></textarea>
+    <button id="displayRecipeButton">Display Recipe</button>
+    <p id="displayRecipe"></p>
+
+    <label for="bioInput">Enter your personal bio:</label>
+    <textarea id="bioInput" rows="5" cols="50"></textarea>
+    <button id="displayBioButton">Display Bio</button>
+    <p id="displayBio"></p>
+
+    <label for="goalInput">Enter your list of goals:</label>
+    <textarea id="goalInput" rows="5" cols="50"></textarea>
+    <button id="displayGoalButton">Display Goals</button>
+    <p id="displayGoal"></p>
+
+    <label for="storyInput">Enter a short story or anecdote:</label>
+    <textarea id="storyInput" rows="5" cols="50"></textarea>
+    <button id="displaystoryButton">Display Story</button>
+    <p id="displaystory"></p>
+
+    <script>
+        const favBookInput =  document.getElementById("favBookInput");
+        const displayBookButton = document.getElementById("displayBookButton");
+        const displayFavouriteBooks = document.getElementById("displayFavouriteBooks");
+
+        displayBookButton.addEventListener("click", function() {
+            let favBooks = favBookInput.value;
+            displayFavouriteBooks.textContent = `Your Favourite Books: ${favBooks}`
+        })
+
+        const recipeInput =  document.getElementById("recipeInput");
+        const displayRecipeButton = document.getElementById("displayRecipeButton");
+        const displayRecipe = document.getElementById("displayRecipe");
+
+        displayRecipeButton.addEventListener("click", function() {
+            let recipes = recipeInput.value;
+            displayRecipe.textContent = `Ingredients: ${recipes}.split("\n\nHow to: ${recipes}")`
+        })
+
+        const bioInput =  document.getElementById("bioInput");
+        const displayBioButton = document.getElementById("displayBioButton");
+        const displayBio = document.getElementById("displayBio");
+
+        displayBioButton.addEventListener("click", function() {
+            let bio = bioInput.value;
+            displayBio.textContent = `Your personal Bio: ${bio}`
+        })
+
+        const goalInput =  document.getElementById("goalInput");
+        const displayGoalButton = document.getElementById("displayGoalButton");
+        const displayGoal = document.getElementById("displayGoal");
+
+        displayGoalButton.addEventListener("click", function() {
+            let goal = goalInput.value;
+            displayGoal.textContent = `Your list of goals: ${goal}`
+        })
+
+        const storyInput =  document.getElementById("storyInput");
+        const displaystoryButton = document.getElementById("displaystoryButton");
+        const displaystory = document.getElementById("displayGoal");
+
+        // displaystoryButton.addEventListener("click", function() {
+        //     let story = storyInput.value;
+        //     let formattedRecipe = `
+        //             <h3>Ingredients:</h3>
+        //             <p>${ingredients}</p>
+        //             <h3>How to:</h3>
+        //             <p>${instructions}</p>`;
+        //     displaystory.textContent = `Your short story or anecdote: ${story}`
+
+        // })
+        displayRecipeButton.addEventListener("click", function() {
+            let recipeText = recipeInput.value;
+            let parts = recipeText.split("\n\n"); // Split on two or more newlines
+
+            if (parts.length >= 2) {
+                let ingredients = parts[0];
+                let instructions = parts.slice(1).join('\n\n');
+
+                let formattedRecipe = `
+                    <h3>Ingredients:</h3>
+                    <p>${ingredients}</p>
+                    <h3>Instructions:</h3>
+                    <p>${instructions}</p>
+                `;
+
+                displayRecipe.innerHTML = formattedRecipe;
+            } else {
+                displayRecipe.textContent = "Please enter ingredients, then leave two blank lines before writing instructions.";
+            }
+        });
+
+    </script>
+</body>
+</html>

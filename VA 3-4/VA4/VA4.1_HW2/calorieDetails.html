@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyHealth - Calorie Details</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">MyHealth</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="calorieReport.html">calories</a></li>
+        </ul>
+        <h1>Calorie Details</h1>
+    </header>
+    <main>
+        <section id="calorieDetails">
+
+        </section>
+    </main>
+    <footer>
+        <p>Copyright: MyHealth App. All rights reserved.</p>
+    </footer>
+    <script>
+    let CalorieIntake = [
+        {
+            id: "1",
+            mealType: "Breakfast",
+            item: "Dosa",
+            calories: "200"
+        },
+        {
+            id: "2",
+            mealType: "Lunch",
+            item: "Roti",
+            calories: "250"
+        },
+        {
+            id: "3",
+            mealType: "Dinner",
+            item: "Khichdi",
+            calories: "240"
+        }
+    ];
+    
+    function getParameterById(id) {
+        let url = new URL(window.location.href);
+        return url.searchParams.get(id);
+    }
+    
+    let calorieIntakeId = getParameterById("id");
+    
+    let calorieIntake;
+    for (let i = 0; i < CalorieIntake.length; i++) {
+        if (CalorieIntake[i].id === calorieIntakeId) {
+            calorieIntake = CalorieIntake[i];
+            break;  // Exit the loop once we find a match
+        }
+    }
+    
+    let calorieDetailsElements = document.getElementById("calorieDetails");
+    
+    if (calorieIntake) {
+        calorieDetailsElements.innerHTML = `
+            <h2>${calorieIntake.mealType}</h2>
+            <ul>
+                <li>Meal: ${calorieIntake.mealType}</li>
+                <li>Item: ${calorieIntake.item}</li>
+                <li>Calories: ${calorieIntake.calories}</li>
+            </ul>
+        `;
+    } else {
+        calorieDetailsElements.innerHTML = "<p>Meal not found</p>";
+    }
+    </script>
+</body>
+</html>

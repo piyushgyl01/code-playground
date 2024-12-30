@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA1.4_CW</title>
+</head>
+<body>
+    <label for="nameInput">Enter your name:</label>
+    <input type="text" id="nameInput">
+    <button id="showNameBtn">Show Name</button>
+    <p id="displayName"></p>
+    <button id="styleBtn">Change Style</button>
+
+    <script>
+        const nameInput = document.querySelector("#nameInput");
+        const showNameBtn = document.querySelector("#showNameBtn");
+        const displayName = document.querySelector("#displayName");
+        const styleBtn = document.querySelector("#styleBtn");
+
+        showNameBtn.addEventListener("click", function() {
+            name = nameInput.value;
+            displayName.textContent = `Your Name ${name}`
+        })
+
+        styleBtn.addEventListener("click", function() {
+            displayName.style.color = "white"
+            displayName.style.backgroundColor = "black"
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA6.1_HW2</title>
+</head>
+<body>
+    <h1>Employee List</h1>
+    <id id="employeeList"></id>
+
+    <script>
+        const apiUrl = "https://employee-management-backend-student-neog-ca.replit.app/employees";
+        const employeeList = document.querySelector("#employeeList");
+
+        function fetchData() {
+            employeeList.textContent = "Loading....";
+            fetch(apiUrl)
+                .then (function (response) {
+                    return response.json();
+                })
+                .then (function (data) {
+                    if (data) {
+                        employeeList.textContent = "";
+                        for (let i = 0 ;i < data.length; i++) {
+                            const liELements = document.createElement("li");
+                            liELements.textContent = `${data[i].name} - ${data[i].department}`;
+                            employeeList.appendChild(liELements)
+                        }
+                    } else {
+                        employeeList.textContent = "Failed to fetch the data";
+                    }
+                })
+                .catch (function (error) {
+                    employeeList.textContent = "An error occured while fetching data."
+                })
+        }
+        fetchData();
+    </script>
+</body>
+</html>

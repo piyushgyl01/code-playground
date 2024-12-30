@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">Food Database</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dishes.html">Dishes</a></li>
+            <li><a href="foodReport.html">Food Report</a></li>
+            <li><a href="cookingTips.html">Cooking Tips</a></li>
+        </ul>
+    </header>
+    <main>
+        <h1>Food Details</h1>
+        <section id="foodDetails">
+
+        </section>
+    </main>
+    <script>
+        const DataBase = [
+            {
+                id: "1",
+                dish: "Pizza",
+                cusine: "Italian",
+                ingredients: "Dough, Tomato sauce, Cheese, Toppings",
+                details: "A delicious Italian dish with a variety of toppings."
+            },
+            {
+                id: "2",
+                dish: "Sushi",
+                cusine: "Japanese",
+                ingredients: "Rice, Fish, Seaweed, Vegetables",
+                details: "A traditional Japanese dish with vinegared rice and various fillings."
+            },
+            {
+                id: "3",
+                dish: "Tacos",
+                cusine: "Mexican",
+                ingredients: "Tortillas, Meat, Salsa, Toppings",
+                details: "A popular Mexican dish with a variety of fillings wrapped in a tortilla."
+            },
+            {
+                id: "4",
+                dish: "Pasta Carbonara",
+                cusine: "Italian",
+                ingredients: "Pasta, Eggs, Cheese, Bacon",
+                details: "A classic Italian pasta dish made with eggs, cheese, and bacon."
+            },
+            {
+                id: "5",
+                dish: "Chocolate Cake",
+                cusine: "Dessert",
+                ingredients: "Flour, Sugar, Cocoa, Eggs, Chocolate",
+                details: "A rich and moist chocolate cake, perfect for dessert."
+            },
+            {
+                id: "6",
+                dish: "Biryani",
+                cusine: "Indian",
+                ingredients: "Rice, Meat, Spices, Vegetables",
+                details: "A flavorful Indian rice dish with meat, spices, and vegetables."
+            }
+        ];
+
+        function getParameterById(id) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get("id"); 
+        }
+
+        let dishID = getParameterById("id");
+
+        let dishDetails;
+        for (let i = 0; i < DataBase.length; i++) {
+            if (DataBase[i].id === dishID) {
+                dishDetails = DataBase[i];
+                break;
+            }
+        }
+        
+        let dishDetailsElements = document.getElementById("foodDetails");
+
+        if (dishDetails) {
+            dishDetailsElements.innerHTML = `
+                <h1>${dishDetails.dish}</h1>
+                <p><strong>Cuisine: </strong>${dishDetails.cusine}</p>
+                <p><strong>Ingredients: </strong>${dishDetails.ingredients}</p>
+                <p><strong>Details: </strong>${dishDetails.details}</p>
+            `
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA3.1_HW_1</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="container pt-3 pb-2">
+        <h1>Priority To-Do List</h1>
+    </header>
+    <main class="container">
+        <!-- <div class="input-group mb-3">
+            <input class="form-control" type="text" id="newTask" placeholder="Add a new task">
+        </div>
+        <div class="input-group mb-3">
+            <select class="form-select" id="selectPriority">
+                <option value="Low Priority">Low Priority</option>
+                <option value="Medium Priority">Medium Priority</option>
+                <option value="High Priority">High Priority</option>
+            </select>    
+            <button id="addTaskBtn" class="btn btn-primary">Add</button>
+        </div> -->
+        <div class="row g-3 align-items-center mb-3">
+            <div class="col-auto flex-grow-1">
+                <input class="form-control" type="text" id="newTask" placeholder="Add a new task">
+            </div>
+            <div class="col-auto">
+                <select class="form-select" id="selectPriority">
+                    <option value="Low Priority">Low Priority</option>
+                    <option value="Medium Priority">Medium Priority</option>
+                    <option value="High Priority">High Priority</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button id="addTaskBtn" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <h2 >Low Priority</h2>
+                <ul class="list-group" id="lowPriorityList"></ul>
+            </div>
+            <div class="col-md-3">
+                <h2>Medium Priority</h2>
+                <ul class="list-group" id="mediumPriorityList"></ul>
+            </div>
+            <div class="col-md-3">
+                <h2 >High Priority</h2>
+                <ul class="list-group" id="highPriorityList"></ul>
+            </div>
+            <div class="col-md-3">
+                <h2 >Completed</h2>
+                <ul class="list-group" id="completedList"></ul>
+            </div>
+        </div>
+
+        <script>
+            const newTask = document.getElementById("newTask");
+            const selectPriority = document.getElementById("selectPriority");
+            const addTaskBtn = document.getElementById("addTaskBtn");
+            const lowPriorityList = document.getElementById("lowPriorityList");
+            const mediumPriorityList = document.getElementById("mediumPriorityList");
+            const highPriorityList = document.getElementById("highPriorityList");
+            const completedList = document.getElementById("completedList");
+
+            addTaskBtn.addEventListener("click", function() {
+                const listElement1 = document.createElement("li");
+                const listElement2 = document.createElement("li");
+                const listElement3 = document.createElement("li");
+                const listElement4 = document.createElement("li");
+
+                if (selectPriority.value === "Low Priority") {
+                    listElement1.innerHTML = `<div class="mt-3"><p class=mx -2 fs-5 fw-normal>${newTask.value}</p> <select onChange="updateTaskStatus(this)" id="selectProgress" class="list-group-item mt-2">
+                    <option value="To Do">To Do</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Pending Review">Pending Review</option>
+                    <option value="Review Changes in progress">Review Changes in progress</option>
+                    <option value="Done">Done</option></select><button onClick="deleteTask(this)" class="btn btn-danger btn-sm mt-2">Delete</button</div>`
+
+                    lowPriorityList.appendChild(listElement1);
+                } else if (selectPriority.value === "Medium Priority") {
+                    listElement2.innerHTML = `<div class="mt-3"><p class=mx -2 fs-5 fw-normal>${newTask.value}</p> <select onChange="updateTaskStatus(this)" id="selectProgress" class="list-group-item mt-2">
+                    <option value="To Do">To Do</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Pending Review">Pending Review</option>
+                    <option value="Review Changes in progress">Review Changes in progress</option>
+                    <option value="Done">Done</option></select><button onClick="deleteTask(this)" class="btn btn-danger btn-sm mt-2">Delete</button</div>`
+
+                    mediumPriorityList.appendChild(listElement2);
+                } else {
+                    listElement3.innerHTML = `<div class="mt-3"><p class=mx -2 fs-5 fw-normal>${newTask.value}</p> <select onChange="updateTaskStatus(this)" id="selectProgress" class="list-group-item mt-2">
+                    <option value="To Do">To Do</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Pending Review">Pending Review</option>
+                    <option value="Review Changes in progress">Review Changes in progress</option>
+                    <option value="Done">Done</option></select><button onClick="deleteTask(this)" class="btn btn-danger btn-sm mt-2">Delete</button</div>`
+
+                    highPriorityList.appendChild(listElement3);
+                }  
+
+            })
+
+            // function doneFunc(completedList) {
+            //     const listElement = completedList.parentElement.parentElement.childElement.selectProgress.value;
+            //     if (listElement === "Done") {
+            //         listElement.remove();
+            //         completedList.innerHTML = `${listElement}`
+            //     }
+            // }
+
+            // function deleteTask(deleteBtn) {
+            //     const listItem = deleteBtn.parentElement;
+            //     listItem.remove()
+            // } 
+
+            // const newTask = document.getElementById("newTask");
+            // const selectPriority = document.getElementById("selectPriority");
+            // const addTaskBtn = document.getElementById("addTaskBtn");
+            // const lowPriorityList = document.getElementById("lowPriorityList");
+            // const mediumPriorityList = document.getElementById("mediumPriorityList");
+            // const highPriorityList = document.getElementById("highPriorityList");
+            // const completedList = document.getElementById("completedList");
+
+            // addTaskBtn.addEventListener("click", function() {
+            //     const taskText = newTask.value.trim();
+            //     if (taskText === "") return; // Prevent adding empty tasks
+
+            //     const listElement = document.createElement("li");
+                
+            //     // Create the task HTML with a unique ID for each task
+            //     listElement.innerHTML = `
+            //         ${taskText}
+            //         <select onChange="updateTaskStatus(this)" data-task-id="${Date.now()}">
+            //             <option value="To Do">To Do</option>
+            //             <option value="In Progress">In Progress</option>
+            //             <option value="Pending Review">Pending Review</option>
+            //             <option value="Review Changes in progress">Review Changes in progress</option>
+            //             <option value="Done">Done</option>
+            //         </select>
+            //         <button onClick="deleteTask(this)">Delete</button>
+            //     `;
+
+            //     // Append the task to the appropriate list based on priority
+            //     if (selectPriority.value === "Low Priority") {
+            //         lowPriorityList.appendChild(listElement);
+            //     } else if (selectPriority.value === "Medium Priority") {
+            //         mediumPriorityList.appendChild(listElement);
+            //     } else {
+            //         highPriorityList.appendChild(listElement);
+            //     }
+
+            //     // Clear the input field after adding a task
+            //     newTask.value = "";
+            // });
+
+            // Function to update task status
+            function updateTaskStatus(select) {
+                if (select.value === "Done") {
+                    const listItem = select.closest('li');
+                    const taskText = listItem.querySelector('p').textContent;
+                    
+                    // Create a new list item for the completed list
+                    const completedItem = document.createElement("li");
+                    completedItem.textContent = taskText;
+                    
+                    // Move the task to the completed list
+                    completedList.appendChild(completedItem);
+                    
+                    // Remove the original task from its current list
+                    listItem.remove();
+                }
+            }
+
+            function deleteTask(deleteBtn) {
+                const listItem = deleteBtn.closest('li');
+                listItem.remove();
+            }
+            
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </main>
+</body>
+</html>

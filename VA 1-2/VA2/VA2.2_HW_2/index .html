@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA2.2_HW2</title>
+</head>
+<body>
+    <label>Program 1: Select a mood:</label> <br>
+    <input type="radio" name="mood" value="Happy"> Happy <br>
+    <input type="radio" name="mood" value="Sad"> Sad <br>
+    <input type="radio" name="mood" value="Excited"> Excited <br>
+    <p id="moodOutput"></p>
+    
+    <label>Program 2: Choose a book genre:</label> <br>
+    <input type="radio" name="bookGenre" value="Mystery"> Mystery <br>
+    <input type="radio" name="bookGenre" value="Romance"> Romance <br>
+    <input type="radio" name="bookGenre" value="Science Fiction"> Science Fiction <br>
+    <button id="bookGenreBtn">Display Book Recommendation</button> <br>
+    <p id="bookGenreOutput"></p>
+
+    <label>Program 3: Select a clothing style:</label> <br>
+    <input type="radio" name="clothingStyle" value="Casual"> Casual <br>
+    <input type="radio" name="clothingStyle" value="Formal"> Formal <br>
+    <input type="radio" name="clothingStyle" value="Sporty"> Sporty <br>
+    <button id="clothingStyleBtn">Display Seleuted Style</button>
+    <p id="clothingStyleOutput"></p>
+
+    <label>Program 4: Choose a weather preference:</label> <br>
+    <input type="radio" name="weather" value="Sunny"> Sunny <br>
+    <input type="radio" name="weather" value="Rainy"> Rainy <br>
+    <input type="radio" name="weather" value="Snowy"> Snowy <br>
+    <button id="weatherBtn">Display Selected Weather Preference</button>
+    <p id="weatherOutput"></p>
+
+    <label>Program 5: Select a travel mode:</label> <br>
+    <input type="radio" name="travel" value="Car"> Car <br>
+    <input type="radio" name="travel" value="Train"> Train <br>
+    <input type="radio" name="travel" value="Plane"> Plane <br>
+    <p id="travelOutput"></p>
+
+    <script>
+        const moodRadios = document.getElementsByName("mood");
+        const moodOutput = document.getElementById("moodOutput");
+
+        for (let i = 0; i < moodRadios.length; i++) {
+            moodRadios[i].addEventListener("change", function() {
+                const selectedMood = document.querySelector(`input[name="mood"]:checked`).value;
+                moodOutput.textContent = `Selected Mood: ${selectedMood}`
+            })
+        }
+
+        const bookGenreRadios = document.getElementsByName("bookGenre");
+        const bookGenreBtn = document.getElementById("bookGenreBtn");
+        const bookGenreOutput = document.getElementById("bookGenreOutput");
+
+        bookGenreBtn.addEventListener("click", function() {
+            const selectedBookGenre = document.querySelector(`input[name="bookGenre"]:checked`);
+            if (selectedBookGenre) {
+                bookGenreOutput.textContent = `Book recommendation for ${selectedBookGenre.value} genre`;
+            } else {
+                bookGenreOutput.textContent = `Please select at least one book genre`;
+            }
+        })
+
+        const clothingStyleRadious = document.getElementsByName("clothingStyle");
+        const clothingStyleBtn = document.getElementById("clothingStyleBtn");
+        const clothingStyleOutput = document.getElementById("clothingStyleOutput");
+
+        clothingStyleBtn.addEventListener("click", function() {
+            const selectedClothingStyle = document.querySelector(`input[name="clothingStyle"]:checked`);
+            if (selectedClothingStyle) {
+                clothingStyleOutput.textContent = `Selected clothing style: ${selectedClothingStyle.value}`;
+            } else {
+                clothingStyleOutput.textContent = `Please select at least one clothing style`
+            }
+        })
+
+        const weatherRadious = document.getElementsByName("weather");
+        const weatherBtn = document.getElementById("weatherBtn");
+        const weatherOutput = document.getElementById("weatherOutput");
+
+        weatherOutput.addEventListener("click", function() {
+            const selectedWeather = document.querySelector(`input[name="weather"]:checked`);
+            if (selectedWeather) {
+                weatherOutput.textContent = `Selected weather preference: ${selectedWeather.value}`;
+            } else {
+                weatherOutput.textContent = `Please select at least one weather preference`
+            }
+        })
+
+        const travelRadios = document.getElementsByName("travel");
+        const travelOutput = document.getElementById("travelOutput");
+
+        for (let i = 0; i < travelRadios.length; i++) {
+            travelRadios[i].addEventListener("change", function() {
+                const selectedMood = document.querySelector(`input[name="travel"]:checked`).value;
+                travelOutput.textContent = `Selected travel Mode: ${selectedMood}`
+            })
+        }
+    </script>
+</body>
+</html>

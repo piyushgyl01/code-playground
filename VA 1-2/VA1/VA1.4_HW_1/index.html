@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA1.4_HW_1</title>
+</head>
+<body>
+    <label for="ageInput">Enter your age:</label>
+    <input type="number" id="ageInput">
+    <button id="displayAgeButton">Display Age</button>
+    <button id="checkEligibilityButton">Check Eligibility</button>
+    <p id="displayAge"></p>
+
+    <label for="studentInput">Are you a student?</label>
+    <input type="text" id="studentInput">
+    <button id="displayStudentButton">Display Answer</button>
+    <button id="checkStudentEligibilityButton">Check Eligibility</button>
+    <p id="displaystudent"></p>
+
+    <label for="passwordInput">Enter password:</label>
+    <input type="text" id="passwordInput">
+    <button id="displayPasswordButton">Display Password</button>
+    <button id="checkPasswordEligibilityButton">Check Password</button>
+    <p id="displayPassword"></p>
+
+    <script>
+        const ageInput = document.querySelector("#ageInput");
+        const displayAgeButton = document.querySelector("#displayAgeButton");
+        const checkEligibilityButton = document.querySelector("#checkEligibilityButton");
+        const displayAge = document.querySelector("#displayAge");
+
+        displayAgeButton.addEventListener("click", function() {
+            let age = ageInput.value;
+            displayAge.textContent = `Your age is: ${age}`
+        })
+
+        checkEligibilityButton.addEventListener("click", function() {
+            let ageStyle = ageInput.value;
+            if (ageStyle >= 18) {
+                displayAge.style.color = "green"
+            } else {
+                displayAge.style.color = "red"
+            }
+        })
+
+        const studentInput = document.getElementById("studentInput");
+        const displayStudentButton = document.getElementById("displayStudentButton");
+        const checkStudentEligibilityButton = document.getElementById("checkStudentEligibilityButton");
+        const displaystudent = document.getElementById("displaystudent");
+
+        displayStudentButton.addEventListener("click", function() {
+            let student = studentInput.value.trim().toLowerCase();
+            if (student === "yes" || student === "y") {
+                displaystudent.textContent = `You are eligible.`
+            } else  if (student === "no" || student === "n") {
+                displaystudent.textContent = `You are not eligible.`
+            } else {
+                displaystudent.textContent = `Invalid Input`
+            }        
+        })
+
+        checkStudentEligibilityButton.addEventListener("click", function() {
+            let student = studentInput.value.trim().toLowerCase();
+            if (student === "yes" || student === "y") {
+                displaystudent.style.color = "green"
+            } else  if (student === "no" || student === "n") {
+                displaystudent.style.color = "red"
+            } else {
+                displaystudent.style.color = "black"
+            }
+        })
+
+        const passwordInput = document.getElementById("passwordInput");
+        const displayPasswordButton = document.getElementById("displayPasswordButton");
+        const checkPasswordEligibilityButton = document.getElementById("checkPasswordEligibilityButton");
+        const displayPassword = document.getElementById("displayPassword")
+
+        displayPasswordButton.addEventListener("click",  function() {
+            let password = passwordInput.value;
+            displayPassword.textContent = `Your Password: ${password}`
+        })
+
+        checkPasswordEligibilityButton.addEventListener("click", function() {
+            let passwordEligible = passwordInput.value;
+            if (passwordEligible.includes("@")) {
+                displayPassword.textContent = "Password Accepted";
+                displayPassword.style.color = "green"
+            } else {
+                displayPassword.textContent = "Invalid Password. Password must contain @ symbol.";
+                displayPassword.style.color = "red"
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+
+console.log("A2.1_HW_2")
+console.log("---- ---- ----")
+
+let num1 = 10
+let num2 = 5
+let num3 = 25
+
+console.log("---- ---- ----")
+
+console.log("1.1")
+let sum = num1 + num2
+
+console.log("Numbers: ", num1, num2)
+console.log("Sum: ", sum)
+
+console.log("---- ---- ----")
+
+console.log("1.2")
+let difference = num1 - num2
+
+console.log("Numbers: ", num1, num2)
+console.log("Difference: ", difference)
+
+console.log("---- ---- ----")
+
+console.log("1.3")
+let product = num1 * num2
+
+console.log("Numbers: ", num1, num2)
+console.log("Product: ", product)
+
+console.log("---- ---- ----")
+
+console.log("1.4")
+let divsion = num1 / num2
+
+console.log("Numbers: ", num1, num2)
+console.log("Division: ", divsion)
+
+console.log("---- ---- ----")
+
+console.log("1.5")
+let remainder = num1 % num2
+
+console.log("Numbers: ", num1, num2)
+console.log("Remainder: ", remainder)
+
+console.log("---- ---- ----")
+console.log("Excercise 2")
+
+console.log("---- ---- ----")
+
+console.log("2.1")
+let sumAll = num1 + num2 + num3
+
+console.log("Numbers: ", num1, num2, num3)
+console.log("Sum of all numbers: ", sumAll)
+
+console.log("---- ---- ----")
+
+console.log("2.2")
+let sumAndSubtract = num3 - (num1 + num2)
+
+console.log("Numbers: ", num1, num2, num3)
+console.log("Sum and Subtract: ", sumAndSubtract)
+
+console.log("---- ---- ----")
+
+console.log("2.3")
+let productAndAdd = (num1 * num2) + num3
+
+console.log("Numbers: ", num1, num2, num3)
+console.log("Product and Add: ", productAndAdd)
+
+console.log("---- ---- ----")
+
+console.log("2.4")
+let divideAndAdd = (num3 / num1) + num2
+
+console.log("Numbers: ", num1, num2, num3)
+console.log("Divide and Add: ",divideAndAdd)
+
+console.log("---- ---- ----")
+
+console.log("2.5")
+let average = (num1 + num2 + num3) / 3
+
+console.log("Numbers: ", num1, num2, num3)
+console.log("Average: ",average)

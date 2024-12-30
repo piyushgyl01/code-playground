@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA2_Assignment_2</title>
+</head>
+<body>
+    <h1>User Waitlist Form</h1>
+    <form id="userWaitlistForm">
+        <label for="userName"><strong>Full Name:</strong></label>
+        <input type="text" id="userName">
+        <br> <br>
+
+        <label for="fullEmailAddress"><strong>Enter Your Email Address:</strong></label>
+        <input type="email" id="fullEmailAddress">
+        <br> <br>  
+
+        <label for="phoneNumber"><strong>Phone Number:</strong></label>
+        <input type="number" id="phoneNumber">
+        <br> <br>
+
+        <label><strong>Gender:</strong></label> <br>
+        <label for="male"><input type="radio" name="gender" id="male" value="Male">Male</label> <br>
+        <label for="female"><input type="radio" name="gender" id="female" value="Female">Female</label> <br>
+        <label for="other"><input type="radio" name="gender" id="other" value="Other">Other</label>
+        <br> <br>
+
+        <label><strong>Are you a college graduate?:</strong></label> <br>
+        <label for="yes"><input type="radio" name="status" id="yes" value="Yes">Yes</label> <br>
+        <label for="no"><input type="radio" name="status" id="no" value="No">No</label> <br>
+        <label for="dropout"><input type="radio" name="status" id="dropout" value="Dropout">Dropout</label> 
+        <br> <br>
+
+        <label>Are you working anywhere full-time or part-time?:</label> <br>
+        <select id="selectWorkingStatus">
+            <option value="Working Full Time">Working Full Time</option>
+            <option value="Working Part Time">Working Part Time</option>
+            <option value="Not Working anywhere">Not Working anywhere</option>
+        </select>
+        <br> <br>
+
+        <label for="webDevWhy"><strong>Why do you want to learn Web Development?</strong></label> <br>
+        <textarea id="webDevWhy" cols="48" rows="4"></textarea> 
+        <br> <br>
+
+        <label><strong>How did you come to know about us?:</strong></label> <br>
+        <label for="yt"><input type="checkbox" name="src" id="yt" value="Youtube">Youtube</label><br>
+        <label for="ig"><input type="checkbox" name="src" id="ig" value="Instagram">Instagram</label><br>
+        <label for="ln"><input type="checkbox" name="src" id="ln" value="Linkedin">Linkedin</label><br>
+        <label for="tw"><input type="checkbox" name="src" id="tw" value="Twitter">Twitter</label><br>
+        <label for="ff"><input type="checkbox" name="src" id="ff" value="Friends and Family">Friends and Family</label><br>
+        <label for="others"><input type="checkbox" name="src" id="others" value="Other">Other</label>
+        <br><br>
+
+        <input type="checkbox" id="confirmation">
+        <label for="confirmation"><strong>I confirm that all information in this form is factually true.</strong></label>
+        <br> <br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <div id="formResult">
+
+    </div>
+
+    <script>
+        const userWaitlistForm = document.getElementById("userWaitlistForm");
+
+        userWaitlistForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const userName = document.getElementById("userName").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const fullEmailAddress = document.getElementById("fullEmailAddress").value;
+            const genderSelection = document.querySelector(`input[name="gender"]:checked`).value;
+            const collegeOrNot = document.querySelector(`input[name="status"]:checked`).value;
+            const selectWorkingStatus = document.getElementById("selectWorkingStatus").value;
+            const webDevWhy = document.getElementById("webDevWhy").value;
+            const campSrc = document.querySelectorAll(`input[name="src"]:checked`);
+
+            let selectedSrc = [];
+            for (let i = 0; i < campSrc.length; i++) {
+                selectedSrc.push(campSrc[i].value);
+            }
+
+            const confirmation = document.getElementById("confirmation").checked;
+
+            const userInputValues = `<h2>Details Submitted</h2>            <p><strong>Name:</strong> ${userName}</p>
+            <p><strong>Phone Number:</strong> ${phoneNumber}</p>
+            <p><strong>Email ID:</strong> ${fullEmailAddress}</p>
+            <p><strong>Gender:</strong> ${genderSelection}</p>
+            <p><strong>Are you a college graduate?:</strong> ${collegeOrNot}</p>
+            <p><strong>Are you working anywhere full-time or part-time?:</strong> ${selectWorkingStatus}</p>
+            <p><strong>Why do you want to learn web development?:</strong> ${webDevWhy}</p>
+            <p><strong>How did you come to know about us?:</strong> ${selectedSrc.join(", ")}</p>`
+
+            const divElement = document.getElementById("formResult");
+            divElement.innerHTML = userInputValues
+        })
+    </script>
+</body>
+</html>
